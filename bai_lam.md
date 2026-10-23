@@ -12,19 +12,22 @@
 
 ```shell
 pwd
-get-childitem -force -recurse
-mv .\nhap_hang.txt .\docs\
-mv .\logo_van_phong_pham.png .\media\
-copy-item .\media\logo_van_phong_pham.png .\backup\
-rm .\temp_131.tmp
-dir logs
+Get-ChildItem -Recurse -Force
+Move-Item .\nhap_hang.txt .\docs\
+Move-Item .\logo_van_phong_pham.png .\media\
+Copy-Item .\media\logo_van_phong_pham.png backup
+Remove-Item .\temp_131.tmp
+Set-Location .\logs\
+Get-Content .\shop.log
+Set-Location ..
+Get-Content .\logs\shop.log | Select-String ERROR > .\logs\daily_report.txt
 
 ```
 
 ### Kết quả liệt kê toàn bộ dự án (Windows: Get-ChildItem -Recurse -Force; macOS: ls -aR)
 
 ```text
-S C:\Users\Admin\Desktop\van-phong-pham-website> get-childitem -force -recurse
+S C:\Users\Admin\Desktop\van-phong-pham-website> Get-ChildItem -Recurse -Force
 
 
     Directory: C:\Users\Admin\Desktop\van-phong-pham-website
@@ -132,14 +135,14 @@ get-content .\logs\shop.log | select-string "ERROR" | out-file .\logs\daily_repo
 ### Lệnh
 
 ```shell
-# Ghi lệnh vào đây (xoá dòng này)
+(Get-Content .\logs\shop.log | Select-String "ERROR").COUNT
 
 ```
 
 ### Kết quả đếm (Windows: giá trị Count; macOS: con số in ra)
 
 ```text
-(Dán kết quả vào đây – xoá dòng này)
+6
 
 ```
 
@@ -148,14 +151,28 @@ get-content .\logs\shop.log | select-string "ERROR" | out-file .\logs\daily_repo
 ### Các lệnh đã chạy
 
 ```shell
-# Ghi lần lượt các lệnh đã chạy, mỗi lệnh một dòng (xoá dòng này)
+pwd
+Get-ChildItem -Recurse -Force
+Move-Item .\nhap_hang.txt .\docs\
+Move-Item .\logo_van_phong_pham.png .\media\
+Copy-Item .\media\logo_van_phong_pham.png backup
+Remove-Item .\temp_131.tmp
+Set-Location .\logs\
+Get-Content .\shop.log
+Set-Location ..
+Get-Content .\logs\shop.log | Select-String ERROR > .\logs\daily_report.txt
 
 ```
 
 ### Nội dung file logs/tong_hop.txt
 
 ```text
-(Dán kết quả vào đây – xoá dòng này)
+=== TONG HOP FILE LOG ===
+2025-10-28 08:51:28 [WARNING] Thoi gian tai trang cham
+2025-10-28 08:54:28 [WARNING] Anh san pham dung luong lon
+2025-10-28 08:57:28 [WARNING] Thoi gian tai trang cham
+ 
+6
 
 ```
 
